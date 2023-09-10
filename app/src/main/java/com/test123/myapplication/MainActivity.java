@@ -11,18 +11,27 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.BuildConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
-import com.test123.myapplication.fragments.Game;
+import com.test123.myapplication.fragments.game.Game;
 import com.test123.myapplication.fragments.Internet;
 import com.test123.myapplication.fragments.Webview;
+import com.test123.myapplication.fragments.game.models.Answer;
+import com.test123.myapplication.fragments.game.models.Level;
+import com.test123.myapplication.fragments.game.models.Question;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
-import java.net.InetAddress;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
+import java.util.Scanner;
 
 public class MainActivity extends AppCompatActivity {
     private SharedPreferences preferences;
@@ -30,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private FragmentManager fragmentManager;
     private FirebaseRemoteConfig firebaseRemoteConfig;
     private String url = "";
+    private static List<Level> levels = new ArrayList<>();
     private static Boolean webViewActive = false;
     private String TAG = getClass().getCanonicalName();
     @Override
@@ -74,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
                         Log.i(TAG, "Is emu " + checkIsEmu());
                         if(url.isEmpty() || checkIsEmu()){
                             Log.i(TAG, "Url error or is emu");
+                            levels = loadLvl();
                             fragmentManager.beginTransaction().add(R.id.fragmentView, new Game()).commit();
                         }else {
                             Log.i(TAG, "Url success and is not emu");
@@ -128,6 +139,50 @@ public class MainActivity extends AppCompatActivity {
                 || buildHardware.toLowerCase(Locale.getDefault()).contains("nox")
                 || buildProduct.toLowerCase(Locale.getDefault()).contains("nox"))
                 || (brand.startsWith("generic") && Build.DEVICE.startsWith("generic"));
+    }
+
+    public List<Level> loadLvl(){
+        InputStream inputStream = getResources().openRawResource(R.raw.question_en);
+        String jsonString = new Scanner(inputStream).useDelimiter("\\A").next();
+        try {
+            JSONObject file = new JSONObject(jsonString);
+            JSONArray Levels = file.getJSONArray("Levels");
+            List<Level> levels = new ArrayList<>();
+            for(int i = 0; i < Levels.length(); i++){
+                JSONObject level = Levels.getJSONObject(i);
+                Level _level = new Level();
+                _level.setId(level.getInt("id"));
+
+                JSONArray questions = level.getJSONArray("questions");
+                List<Question> _questions = new ArrayList<>();
+                for(int j = 0;j < questions.length(); j++){
+                    JSONObject question = questions.getJSONObject(j);
+                    Question _question = new Question();
+                    _question.setId(question.getInt("id"));
+                    _question.setQuestion_image(question.getString("question_image"));
+                    _question.setQuestion_text(question.getString("question_text"));
+                    List<Answer> _question_answers = new ArrayList<>();
+                    JSONArray question_answers = question.getJSONArray("question_answers");
+                    for(int k = 0; k < question_answers.length(); k++){
+                        JSONObject question_answer = question_answers.getJSONObject(k);
+                        Answer _answer = new Answer();
+                        _answer.setAnswer_text(question_answer.getString("answer_text"));
+                        _answer.setRight(question_answer.getBoolean("right"));
+                        _question_answers.add(_answer);
+                    }
+                    _question.setQuestion_answers(_question_answers);
+                    _questions.add(_question);
+                }
+                _level.setQuestions(_questions);
+                levels.add(_level);
+            }
+            return levels;
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public static List<Level> getLevels(){
+        return levels;
     }
     public static void webViewActive(){
         webViewActive = true;

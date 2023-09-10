@@ -3,12 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.Game">
+    android:background="@color/color_1"
+    tools:context=".fragments.game.Game">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <GridView
+        android:id="@+id/levels"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Game" />
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="15dp"
+        android:horizontalSpacing="1dp"
+        android:numColumns="3"
+        android:verticalSpacing="1dp" />
 
 </FrameLayout>

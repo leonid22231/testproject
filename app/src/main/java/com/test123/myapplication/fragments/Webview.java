@@ -40,7 +40,10 @@ public class Webview extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        if(savedInstanceState!=null)
+            webview.restoreState(savedInstanceState);
+        else
+            webview.loadUrl(url);
     }
 
     @Override
@@ -56,9 +59,8 @@ public class Webview extends Fragment {
         View view = inflater.inflate(R.layout.fragment_webview, container, false);
         webview = view.findViewById(R.id.webview);
         Log.i("URL", url);
-        webview.loadUrl(url);
-        webview.setWebViewClient(new WebViewClient());
 
+        webview.setWebViewClient(new WebViewClient());
         webview.getSettings().setJavaScriptEnabled(true);
         webview.getSettings().setDomStorageEnabled(true);
         webview.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
@@ -71,11 +73,6 @@ public class Webview extends Fragment {
         webview.getSettings().setAllowContentAccess(true);
         CookieManager cookieManager = CookieManager.getInstance();
         cookieManager.setAcceptCookie(true);
-        if(savedInstanceState!=null)
-            webview.restoreState(savedInstanceState);
-        else
-            webview.loadUrl(url);
-
 
         MainActivity.webViewActive();
         return view;
