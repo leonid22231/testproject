@@ -8,7 +8,9 @@ import androidx.fragment.app.FragmentManager;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.util.Log;
+import android.webkit.WebView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -42,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private static List<Level> levels = new ArrayList<>();
     private static Boolean webViewActive = false;
     private String TAG = getClass().getCanonicalName();
+    private Webview webView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,16 +55,22 @@ public class MainActivity extends AppCompatActivity {
         preferences = getPreferences(MODE_PRIVATE);
 
         fragmentManager = getSupportFragmentManager();
+
+
         if(isSavedUrl()){
             try {
                 if(!isInternetAvailable())
-                    fragmentManager.beginTransaction().add(R.id.fragmentView, new Internet()).commit();
+                    fragmentManager.beginTransaction().replace(R.id.fragmentView, new Internet()).commit();
                 else{
-                    Webview webview = new Webview();
-                    Bundle args = new Bundle();
-                    args.putString("url", url);
-                    webview.setArguments(args);
-                    fragmentManager.beginTransaction().add(R.id.fragmentView, webview).commit();
+                    if(savedInstanceState!=null){
+                        webView = (Webview) fragmentManager.findFragmentByTag("WebView");
+                    }else {
+                        webView = new Webview();
+                        Bundle args = new Bundle();
+                        args.putString("url", url);
+                        webView.setArguments(args);
+                    }
+                    fragmentManager.beginTransaction().replace(R.id.fragmentView, webView, "WebView").commit();
                 }
 
             } catch (IOException e) {
@@ -85,15 +94,19 @@ public class MainActivity extends AppCompatActivity {
                         if(url.isEmpty() || checkIsEmu()){
                             Log.i(TAG, "Url error or is emu");
                             levels = loadLvl();
-                            fragmentManager.beginTransaction().add(R.id.fragmentView, new Game()).commit();
+                            fragmentManager.beginTransaction().replace(R.id.fragmentView, new Game()).commit();
                         }else {
                             Log.i(TAG, "Url success and is not emu");
                             preferences.edit().putString("m_url", url).apply();
-                            Webview webview = new Webview();
-                            Bundle args = new Bundle();
-                            args.putString("url", url);
-                            webview.setArguments(args);
-                            fragmentManager.beginTransaction().add(R.id.fragmentView, webview).commit();
+                            if(savedInstanceState!=null){
+                                webView = (Webview) fragmentManager.findFragmentByTag("WebView");
+                            }else {
+                                webView = new Webview();
+                                Bundle args = new Bundle();
+                                args.putString("url", url);
+                                webView.setArguments(args);
+                            }
+                            fragmentManager.beginTransaction().replace(R.id.fragmentView, webView, "WebView").commit();
                         }
                     }
                 });

@@ -24,9 +24,10 @@ public class Webview extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        url = getArguments().getString("url");
-        Webview.newInstance(url);
         super.onCreate(savedInstanceState);
+
+        url = getArguments().getString("url");
+
     }
     public static Webview newInstance(String url) {
         Webview f = new Webview();
@@ -35,21 +36,15 @@ public class Webview extends Fragment {
         f.setArguments(args);
         return f;
     }
-    public Webview(){
-    }
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        if(savedInstanceState!=null)
-            webview.restoreState(savedInstanceState);
-        else
-            webview.loadUrl(url);
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
     }
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
-        webview.saveState(outState);
         super.onSaveInstanceState(outState);
+        webview.saveState(outState);
     }
 
     @Override
@@ -57,6 +52,7 @@ public class Webview extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_webview, container, false);
+
         webview = view.findViewById(R.id.webview);
         Log.i("URL", url);
 
@@ -73,6 +69,11 @@ public class Webview extends Fragment {
         webview.getSettings().setAllowContentAccess(true);
         CookieManager cookieManager = CookieManager.getInstance();
         cookieManager.setAcceptCookie(true);
+
+        if(savedInstanceState!=null){
+            webview.restoreState(savedInstanceState);
+        }else
+            webview.loadUrl(url);
 
         MainActivity.webViewActive();
         return view;
