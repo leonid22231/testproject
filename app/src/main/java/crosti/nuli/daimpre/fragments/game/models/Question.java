@@ -1,6 +1,4 @@
-package com.test123.myapplication.fragments.game.models;
-
-import android.media.Image;
+package crosti.nuli.daimpre.fragments.game.models;
 
 import java.util.List;
 

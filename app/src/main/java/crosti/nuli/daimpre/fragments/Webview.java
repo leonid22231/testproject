@@ -1,4 +1,4 @@
-package com.test123.myapplication.fragments;
+package crosti.nuli.daimpre.fragments;
 
 import android.os.Bundle;
 
@@ -11,12 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.CookieManager;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.test123.myapplication.MainActivity;
-import com.test123.myapplication.R;
+import crosti.nuli.daimpre.MainActivity;
+import crosti.nuli.daimpre.R;
 
 public class Webview extends Fragment {
     private static WebView webview;
@@ -66,7 +65,6 @@ public class Webview extends Fragment {
         webview.getSettings().setAllowFileAccess(true);
         webview.getSettings().setAllowContentAccess(true);
         webview.getSettings().setUseWideViewPort(true);
-        webview.getSettings().setAllowContentAccess(true);
         CookieManager cookieManager = CookieManager.getInstance();
         cookieManager.setAcceptCookie(true);
 

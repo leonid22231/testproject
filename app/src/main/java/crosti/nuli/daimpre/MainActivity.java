@@ -1,4 +1,4 @@
-package com.test123.myapplication;
+package crosti.nuli.daimpre;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,21 +8,19 @@ import androidx.fragment.app.FragmentManager;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.util.Log;
-import android.webkit.WebView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.BuildConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
-import com.test123.myapplication.fragments.game.Game;
-import com.test123.myapplication.fragments.Internet;
-import com.test123.myapplication.fragments.Webview;
-import com.test123.myapplication.fragments.game.models.Answer;
-import com.test123.myapplication.fragments.game.models.Level;
-import com.test123.myapplication.fragments.game.models.Question;
+import crosti.nuli.daimpre.fragments.Webview;
+import crosti.nuli.daimpre.fragments.game.Game;
+import crosti.nuli.daimpre.fragments.Internet;
+import crosti.nuli.daimpre.fragments.game.models.Answer;
+import crosti.nuli.daimpre.fragments.game.models.Level;
+import crosti.nuli.daimpre.fragments.game.models.Question;
 
 import org.json.JSONArray;
 import org.json.JSONException;

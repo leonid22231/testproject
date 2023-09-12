@@ -1,4 +1,4 @@
-package com.test123.myapplication;
+package crosti.nuli.myapplication;
 
 import org.junit.Test;
 

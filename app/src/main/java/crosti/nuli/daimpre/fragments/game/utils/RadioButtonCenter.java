@@ -1,4 +1,4 @@
-package com.test123.myapplication.fragments.game.utils;
+package crosti.nuli.daimpre.fragments.game.utils;
 
 import android.content.Context;
 import android.graphics.Canvas;

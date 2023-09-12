@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "422030911415",
-    "project_id": "test-efdd9",
-    "storage_bucket": "test-efdd9.appspot.com"
+    "project_number": "705094455646",
+    "project_id": "qwhyud",
+    "storage_bucket": "qwhyud.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:422030911415:android:74320cd9a2c13ac9e16a32",
+        "mobilesdk_app_id": "1:705094455646:android:1b38342b7814647a2bffcf",
         "android_client_info": {
-          "package_name": "com.test123.myapplication"
+          "package_name": "crosti.nuli.daimpre"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCeU8lBA0mmVzDHOcFFtBjvq4WpLWeyXcY"
+          "current_key": "AIzaSyD8xOSBRQa9L6mgFC8TRGAc2XJN9WZD-oA"
         }
       ],
       "services": {

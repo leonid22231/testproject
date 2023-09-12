@@ -1,4 +1,4 @@
-package com.test123.myapplication.fragments.game.ui;
+package crosti.nuli.daimpre.fragments.game.ui;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -17,11 +17,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import com.test123.myapplication.R;
-import com.test123.myapplication.fragments.game.models.Answer;
-import com.test123.myapplication.fragments.game.models.Level;
-import com.test123.myapplication.fragments.game.utils.ListAdapter;
-import com.test123.myapplication.fragments.game.utils.RadioButtonCenter;
+import crosti.nuli.daimpre.R;
+import crosti.nuli.daimpre.fragments.game.models.Answer;
+import crosti.nuli.daimpre.fragments.game.models.Level;
+import crosti.nuli.daimpre.fragments.game.utils.ListAdapter;
+import crosti.nuli.daimpre.fragments.game.utils.RadioButtonCenter;
 
 import java.util.List;
 

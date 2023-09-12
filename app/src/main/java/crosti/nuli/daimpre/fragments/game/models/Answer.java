@@ -1,4 +1,4 @@
-package com.test123.myapplication.fragments.game.models;
+package crosti.nuli.daimpre.fragments.game.models;
 
 public class Answer {
     String Answer_text;

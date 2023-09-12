@@ -1,4 +1,4 @@
-package com.test123.myapplication.fragments;
+package crosti.nuli.daimpre.fragments;
 
 import android.os.Bundle;
 
@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.test123.myapplication.R;
+import crosti.nuli.daimpre.R;
 
 
 public class Internet extends Fragment {

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.test123.myapplication.fragments.game.utils.RadioButtonCenter
+    <crosti.nuli.daimpre.fragments.game.utils.RadioButtonCenter
         android:id="@+id/_b_r"
         android:layout_width="wrap_content"
         android:focusable="false"

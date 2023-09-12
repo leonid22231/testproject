@@ -1,4 +1,4 @@
-package com.test123.myapplication.fragments.game.models;
+package crosti.nuli.daimpre.fragments.game.models;
 
 import java.util.List;
 

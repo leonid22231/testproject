@@ -1,4 +1,4 @@
-package com.test123.myapplication.fragments.game.ui;
+package crosti.nuli.daimpre.fragments.game.ui;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,15 +9,13 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.view.ContentInfoCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import com.test123.myapplication.MainActivity;
-import com.test123.myapplication.R;
-import com.test123.myapplication.fragments.game.models.Answer;
-import com.test123.myapplication.fragments.game.models.Level;
-import com.test123.myapplication.fragments.game.models.Question;
+import crosti.nuli.daimpre.R;
+import crosti.nuli.daimpre.fragments.game.models.Answer;
+import crosti.nuli.daimpre.fragments.game.models.Question;
+import crosti.nuli.daimpre.fragments.game.models.Level;
 
 import java.util.ArrayList;
 import java.util.List;

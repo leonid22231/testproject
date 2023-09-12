@@ -1,4 +1,4 @@
-package com.test123.myapplication.fragments.game;
+package crosti.nuli.daimpre.fragments.game;
 
 import android.os.Bundle;
 
@@ -13,11 +13,11 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
-import com.test123.myapplication.MainActivity;
-import com.test123.myapplication.R;
-import com.test123.myapplication.fragments.game.models.Level;
-import com.test123.myapplication.fragments.game.ui.Question;
-import com.test123.myapplication.fragments.game.utils.GridAdapter;
+import crosti.nuli.daimpre.MainActivity;
+import crosti.nuli.daimpre.R;
+import crosti.nuli.daimpre.fragments.game.models.Level;
+import crosti.nuli.daimpre.fragments.game.ui.Question;
+import crosti.nuli.daimpre.fragments.game.utils.GridAdapter;
 
 import java.util.List;
 

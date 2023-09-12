@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.test123.myapplication"
+    namespace = "crosti.nuli.daimpre"
     compileSdk = 33
 
     defaultConfig {
-        applicationId = "com.test123.myapplication"
+        applicationId = "crosti.nuli.daimpre"
         minSdk = 21
         targetSdk = 33
         versionCode = 1

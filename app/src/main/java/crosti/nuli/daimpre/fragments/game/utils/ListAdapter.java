@@ -1,4 +1,4 @@
-package com.test123.myapplication.fragments.game.utils;
+package crosti.nuli.daimpre.fragments.game.utils;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,23 +7,24 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.test123.myapplication.R;
-import com.test123.myapplication.fragments.game.models.Level;
+import crosti.nuli.daimpre.R;
+import crosti.nuli.daimpre.fragments.game.models.Answer;
 
 import java.util.List;
 
-public class GridAdapter extends BaseAdapter {
-    List<Level> levels;
+public class ListAdapter extends BaseAdapter {
+    List<Answer> answers;
     LayoutInflater inflater;
-    TextView textView;
+    TextView _t_answer;
+    RadioButtonCenter _b_r;
     @Override
     public int getCount() {
-        return levels.size();
+        return answers.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return levels.get(position);
+        return answers.get(position);
     }
 
     @Override
@@ -34,15 +35,17 @@ public class GridAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if(convertView == null){
-            convertView = inflater.inflate(R.layout.level, parent, false);
+            convertView = inflater.inflate(R.layout.answer, parent, false);
         }
-        textView = convertView.findViewById(R.id.lvl_n);
-        textView.setText(textView.getText().toString().split(" ")[0]+ " " + (levels.get(position).getId()+1));
+        _b_r = convertView.findViewById(R.id._b_r);
+        _t_answer = convertView.findViewById(R.id._t_answer);
+        _t_answer.setText(answers.get(position).getAnswer_text());
+        _b_r.setChecked(answers.get(position).getChecked());
         return convertView;
     }
 
-    public GridAdapter(List<Level> levels, Context context){
-        this.levels = levels;
+    public ListAdapter(List<Answer> answers, Context context){
+        this.answers = answers;
         if(context!=null){
             inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }

@@ -1,14 +1,12 @@
-package com.test123.myapplication.fragments.game.utils;
+package crosti.nuli.daimpre.fragments.game.utils;
 
 import android.app.Service;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.IBinder;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-
-import com.test123.myapplication.R;
+import crosti.nuli.daimpre.R;
 
 public class MusicService extends Service {
     private static final String TAG = "MusicService";
