@@ -93,7 +93,6 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Boolean> task) {
                         url = firebaseRemoteConfig.getString("url");
-                        Log.i(TAG, "Is emu " + checkIsEmu());
                         if((url.isEmpty() || checkIsEmu()) && !debug){
                             Log.i(TAG, "Url error or is emu");
                             levels = loadLvl();
