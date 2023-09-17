@@ -10,10 +10,13 @@
     <GridView
         android:id="@+id/levels"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"
         android:layout_marginRight="15dp"
+        android:foregroundGravity="center"
+        android:gravity="center"
         android:horizontalSpacing="1dp"
         android:numColumns="3"
         android:verticalSpacing="1dp" />

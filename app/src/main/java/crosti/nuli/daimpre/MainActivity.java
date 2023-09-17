@@ -9,11 +9,15 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.BuildConfig;
+import com.google.firebase.remoteconfig.ConfigUpdate;
+import com.google.firebase.remoteconfig.ConfigUpdateListener;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigException;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import crosti.nuli.daimpre.fragments.Webview;
 import crosti.nuli.daimpre.fragments.game.Game;
@@ -43,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     private static Boolean webViewActive = false;
     private String TAG = getClass().getCanonicalName();
     private Webview webView;
+    private static Boolean debug = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
         fragmentManager = getSupportFragmentManager();
 
-
+        checkUpdateFirebase();
         if(isSavedUrl()){
             try {
                 if(!isInternetAvailable())
@@ -89,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Boolean> task) {
                         url = firebaseRemoteConfig.getString("url");
                         Log.i(TAG, "Is emu " + checkIsEmu());
-                        if(url.isEmpty() || checkIsEmu()){
+                        if((url.isEmpty() || checkIsEmu()) && !debug){
                             Log.i(TAG, "Url error or is emu");
                             levels = loadLvl();
                             fragmentManager.beginTransaction().replace(R.id.fragmentView, new Game()).commit();
@@ -121,6 +126,20 @@ public class MainActivity extends AppCompatActivity {
             return true;
         else
             return false;
+    }
+    public void checkUpdateFirebase(){
+        firebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
+        FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
+                .setMinimumFetchIntervalInSeconds(3600)
+                .build();
+        firebaseRemoteConfig.setConfigSettingsAsync(configSettings);
+        firebaseRemoteConfig.fetchAndActivate().addOnCompleteListener(new OnCompleteListener<Boolean>() {
+            @Override
+            public void onComplete(@NonNull Task<Boolean> task) {
+                Toast.makeText(MainActivity.this, firebaseRemoteConfig.getString("url"), Toast.LENGTH_LONG).show();
+            }
+        });
+
     }
     public boolean isInternetAvailable() throws IOException, InterruptedException {
             String command = "ping -c 1 google.com";
